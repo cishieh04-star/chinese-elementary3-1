@@ -918,7 +918,7 @@ rt{color:#b8452e}
 .rslot .rn{position:absolute;left:-.3rem;top:-.5rem;background:#d7322c;color:#fff;border-radius:50%;width:1.5rem;height:1.5rem;line-height:1.5rem;font-size:.9rem;font-weight:900;text-align:center}
 .rslot .re{font-size:1.9rem;line-height:1.2}
 .rslot .rl{font-size:.95rem;font-weight:800;line-height:1.8;text-align:center}
-.rslot.ok{border-style:solid;border-color:#22a653;background:#effff3;animation:pop .4s}
+.rslot.ok{border-style:solid;border-color:#22a653;background:#effff3;animation:pop2 .4s}
 .rar{color:#8a5a32;font-weight:900;font-size:1.1rem}
 .walker{position:absolute;top:.1rem;left:.5rem;font-size:1.7rem;transition:left .6s ease}
 .rbank{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;max-width:40rem;margin:.3rem auto 0}
@@ -927,7 +927,7 @@ rt{color:#b8452e}
 .rbtn.used{opacity:.3}
 .rbtn.shake{animation:shk .45s}
 @keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-.4rem)}75%{transform:translateX(.4rem)}}
-@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes pop2{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
 /* S15 皮字家族 */
 .pifam{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;margin:.2rem auto}
 .pf{background:#f3e6d6;color:#9a8270;border-radius:.8rem;padding:.1rem .5rem;font-weight:800;font-size:.95rem}
@@ -936,12 +936,12 @@ rt{color:#b8452e}
 .pf b{color:#d7322c}
 .pisent{background:#fffdf7;border:.2rem solid #b8452e;border-radius:1rem;padding:.3rem .8rem;max-width:36rem;margin:.4rem auto;font-size:1.35rem;font-weight:900;line-height:2.1;text-align:center}
 .piblank{display:inline-block;min-width:1.7rem;border-bottom:.2rem solid #d7322c;color:#d7322c}
-.piblank.fill{color:#22a653;border-color:#22a653;animation:pop .4s}
+.piblank.fill{color:#22a653;border-color:#22a653;animation:pop2 .4s}
 .pimix{display:flex;align-items:center;justify-content:center;gap:.4rem;margin:.4rem auto;font-weight:900}
 .pirad,.pipi,.pich{display:inline-flex;align-items:center;justify-content:center;width:3.6rem;height:3.6rem;border-radius:1rem;font-size:2.3rem;background:#fff;border:.2rem solid #e0c8a8;box-shadow:0 .25rem 0 rgba(110,60,25,.2)}
 .pipi{background:#fff3c8;border-color:#f5c242}
 .pich{background:#effff3;border-color:#22a653;color:#157a3a}
-.pich.pop{animation:pop .45s}
+.pich.pchpop{animation:pop2 .45s}
 .piplus{font-size:1.6rem;color:#8a5a32}
 .pibtns{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;max-width:32rem;margin:.3rem auto 0}
 .pibtn{display:flex;flex-direction:column;align-items:center;border:.2rem solid #fff;border-radius:1rem;padding:.35rem .2rem;background:linear-gradient(#fff,#ffeede);box-shadow:0 .3rem 0 rgba(110,60,25,.25);font:inherit;cursor:pointer;color:var(--ink)}
@@ -1599,7 +1599,7 @@ function gPi(){const ids=pickN(POOL.S15,CNT(POOL.S15.length,5,7));const {sb}=sta
     const bs=$$('.pibtn',sb);
     const pick=b=>{if(locked||b.disabled)return;const r=b.dataset.r;$('#prd',sb).textContent=r;
       if(r===it.ans){locked=true;bs.forEach(x=>x.disabled=true);b.classList.add('ok');got.add(r);
-        later(()=>{const pc=$('#pch',sb);pc.textContent=it.ch;pc.classList.add('pop');$$('.piblank',sb).forEach(x=>{x.textContent=it.ch;x.classList.add('fill')});sfx('win');confetti(8);
+        later(()=>{const pc=$('#pch',sb);pc.textContent=it.ch;pc.classList.add('pchpop');$$('.piblank',sb).forEach(x=>{x.textContent=it.ch;x.classList.add('fill')});sfx('win');confetti(8);
           const fm=$('.pifam',sb);if(fm)fm.outerHTML=famHTML();record(id,!failed,b);
           const why=`${r}加上皮，變成「${it.ch}」，是「${it.word}」的${it.ch}。`;
           qDone({first:!failed,html:WHYBOX(T(it.s.replace(/＿/g,it.ch)),T(why)),say:it.s.replace(/＿/g,it.ch)+why,sayFirst:it.s.replace(/＿/g,it.ch),onDone:done,delay:1300})},350)}
